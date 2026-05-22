@@ -1,4 +1,5 @@
 service: api-moodle-ein
+frameworkVersion: "4"
 
 provider:
   name: aws
@@ -28,6 +29,14 @@ functions:
           path: validarcurso
           method: POST
           private: true
+          
+  matricula:
+    handler: usuario.crear_usuario
+    events:
+      - http:
+          path: matricula
+          method: POST
+          apiKeyRequired: true 
 
 custom:
   customDomain:
