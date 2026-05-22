@@ -1,4 +1,4 @@
-name: Deploy Dev (Serverless)
+name: Deploy (Serverless)
 
 on:
   workflow_dispatch:
@@ -16,19 +16,19 @@ permissions:
   contents: read
 
 concurrency:
-  group: deploy-dev
+  group: deploy
   cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: main
 
     steps:
-      - name: Checkout develop branch
+      - name: Checkout  branch
         uses: actions/checkout@v4
         with:
-          ref: develop
+          ref: main
           fetch-depth: 1
 
       - name: Setup Node.js
