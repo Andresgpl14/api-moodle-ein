@@ -1,0 +1,6 @@
+node_modules/
+boto3-env/
+__pycache__/
+*.pyc
+.env
+.serverless/

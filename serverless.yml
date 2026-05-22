@@ -1,0 +1,38 @@
+service: api-moodle-ein
+
+provider:
+  name: aws
+  deploymentBucket: cf-templates-18seqehkfzr1v-us-east-2 
+  profile: ois-prd
+  runtime: python3.11
+  region: ${opt:region, 'us-east-1'}
+  apiGateway:    
+    apiKeys:
+      - name: api-moodle-ein-key   # AWS genera el valor
+  environment:
+    MOODLE_WS_URL: https://campus.einglobal.net/CV/moodle/webservice/rest/server.php
+    MOODLE_WS_TOKEN: 640088d790198e483c87fd80e3211548
+
+plugins:
+  - serverless-offline
+  - serverless-domain-manager 
+  - serverless-python-requirements
+
+functions:
+  validarcurso:
+    handler: curso.validar
+    timeout: 29
+    description: Valida avance/curso en Moodle
+    events:
+      - http:
+          path: validarcurso
+          method: POST
+          private: true
+
+custom:
+  customDomain:
+    #domainName: "api.ein.com" 
+    domainName: "api.isoplussoft.com"
+    basePath: "moodle" 
+    stage: ${opt:stage, 'dev'}
+    endpointType: 'REGIONAL'   
