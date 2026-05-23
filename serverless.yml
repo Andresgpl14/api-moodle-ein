@@ -40,8 +40,8 @@ functions:
 
 custom:
   customDomain:
-    #domainName: "api.ein.com" 
-    domainName: "api.isoplussoft.com"
+    domainName: "api.ein.com" 
+    #domainName: "api.isoplussoft.com"
     basePath: "moodle" 
     stage: ${opt:stage, 'dev'}
     endpointType: 'REGIONAL'   
