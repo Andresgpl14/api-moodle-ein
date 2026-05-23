@@ -3,8 +3,7 @@ frameworkVersion: "4"
 
 provider:
   name: aws
-  deploymentBucket: cf-templates-18seqehkfzr1v-us-east-2 
-  profile: ois-prd
+  deploymentBucket: einglobal-serverless-framework-deployments-8gvj4
   runtime: python3.11
   region: ${opt:region, 'us-east-1'}
   apiGateway:    
@@ -36,11 +35,11 @@ functions:
       - http:
           path: matricula
           method: POST
-          apiKeyRequired: true 
+          private: true
 
 custom:
   customDomain:
-    domainName: "api.ein.com" 
+    domainName: "api.einglobal.net" 
     #domainName: "api.isoplussoft.com"
     basePath: "moodle" 
     stage: ${opt:stage, 'dev'}
